@@ -31,7 +31,7 @@ function Home() {
       }
     };
     fetchData();
-    console.log(setProducts);
+    console.log();
   }, []);
 
   return (
