@@ -1,43 +1,40 @@
-import ProductCard from "../../Components/ProductCard/ProductCard";
-import "./Home.css";
 import { useEffect, useState } from "react";
-//Interface manenoz
-interface ProductProps {
-  id: number;
-  title: string | undefined;
-  price: number;
-  discountPercentage?: number;
-  thumbnail: string;
-}
-interface FetchResponse {
-  productData: ProductProps[];
-}
+import ProductCard from "../../Components/ProductCard/ProductCard";
 
+interface ProductCardProps {
+  id: string;
+  title: string;
+  image: string;
+  price: number;
+}
 function Home() {
-  {
-    /*---Hooks Declaration---------------------------*/
-  }
-  const [products, setProducts] = useState<ProductProps[]>([]);
-  {
-    /*--- Get the data using useEffect---------------------------*/
-  }
+  const [products, setProducts] = useState<ProductCardProps[]>([]);
+
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchProductData = async () => {
       try {
-        const response = await fetch("https://dummyjson.com/products");
-        const myData: FetchResponse = await response.json();
+        const request = await fetch("https://dummyjson.com/products");
+        const myProductsData: ProductCardProps[] = await request.json();
+        setProducts(myProductsData);
       } catch (error) {
-        console.log(error);
+        console.error("Failed to obtain product details", error);
       }
     };
-    fetchData();
-    console.log();
+    fetchProductData();
   }, []);
-
   return (
     <div className="home">
       <div className="home-container">
-        <ProductCard />
+        <h1>Home</h1>
+        {products.map((product) => (
+          <ProductCard
+            key={product.id}
+            id={product.id}
+            image={product.image}
+            title={product.title}
+            price={product.price}
+          />
+        ))}
       </div>
     </div>
   );
