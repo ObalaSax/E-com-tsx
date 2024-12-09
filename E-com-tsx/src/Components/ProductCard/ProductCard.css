@@ -1,0 +1,30 @@
+.productcard {
+  padding: 0;
+  margin: 10px;
+}
+
+.productcard-container {
+  border: 1px solid;
+  padding: 10px;
+  width: 300px;
+  border-radius: 5px;
+}
+
+.productcard-container img {
+  background: red;
+  display: block;
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+  height: 250px;
+  text-decoration: none;
+}
+
+.productcard-container h2 {
+  text-decoration: none;
+  margin: 5px 0px 10px 0px;
+}
+
+.productcard-container p {
+  margin: 5px 0px 10px 0px;
+}

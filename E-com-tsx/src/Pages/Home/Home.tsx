@@ -1,40 +1,37 @@
 import { useEffect, useState } from "react";
 import ProductCard from "../../Components/ProductCard/ProductCard";
 
-interface ProductCardProps {
-  id: string;
+interface ProductDataProps {
+  id: number;
   title: string;
   image: string;
   price: number;
 }
-function Home() {
-  const [products, setProducts] = useState<ProductCardProps[]>([]);
 
+function Home() {
+  const [products, setProducts] = useState<ProductDataProps[]>([]);
   useEffect(() => {
     const fetchProductData = async () => {
       try {
-        const request = await fetch("https://dummyjson.com/products");
-        const myProductsData: ProductCardProps[] = await request.json();
-        setProducts(myProductsData);
+        const response = await fetch("https://dummyjson.com/products");
+        const myProductsdata: ProductDataProps[] = await response.json();
+        const products = myProductsdata;
+        setProducts(myProductsdata);
+
+        console.log("Hello", products);
+        console.log("Tuko sawa", myProductsdata);
       } catch (error) {
-        console.error("Failed to obtain product details", error);
+        console.error("Failed to access Products", error);
       }
     };
     fetchProductData();
-  }, []);
+  });
+
   return (
     <div className="home">
       <div className="home-container">
         <h1>Home</h1>
-        {products.map((product) => (
-          <ProductCard
-            key={product.id}
-            id={product.id}
-            image={product.image}
-            title={product.title}
-            price={product.price}
-          />
-        ))}
+        <ProductCard />
       </div>
     </div>
   );

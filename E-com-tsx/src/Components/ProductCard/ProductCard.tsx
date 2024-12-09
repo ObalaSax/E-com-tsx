@@ -1,30 +1,16 @@
 //import { useEffect } from "react";
-import { Link } from "react-router-dom";
 import "./ProductCard.css";
 
-interface ProductCardProps {
-  id: string;
-  title: string;
-  image: string;
-  price: number;
-}
-const ProductCard: React.FC<ProductCardProps> = ({
-  id,
-  title,
-  image,
-  price,
-}) => {
+function ProductCard() {
   return (
-    <div className="productCard">
+    <div className="productcard">
       <div className="productcard-container">
-        <Link to={`/product/${id}`}>
-          <img src={image} alt={title} />
-          <h2>{title}</h2>
-          <p>{price}</p>
-        </Link>
+        <img src="" alt="" />
+        <h2>Title</h2>
+        <p>Price</p>
       </div>
     </div>
   );
-};
+}
 
 export default ProductCard;
