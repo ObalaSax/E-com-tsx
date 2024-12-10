@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
+import ProductCard from "../../Components/ProductCard/ProductCard";
 
 interface ProductDataProps {
   id: number;
   title: string;
-  category: string;
+  image: string;
+  price: number;
 }
 
 interface FetchProductData {
@@ -39,17 +41,17 @@ function Home() {
       <div className="home-container">
         <h1>Home</h1>
         <ul>
-          {products.length > 0 ? (
-            products.map((product) => (
-              <li key={product.id}>
-                {" "}
-                {product.category}
-                {product.title}
-              </li>
-            ))
-          ) : (
-            <p>Loading products...</p>
-          )}
+          {products.map((product) => {
+            return (
+              <ProductCard
+                key={product.id}
+                id={product.id}
+                title={product.title}
+                price={product.price}
+                image={product.image}
+              />
+            );
+          })}
         </ul>
       </div>
     </div>
