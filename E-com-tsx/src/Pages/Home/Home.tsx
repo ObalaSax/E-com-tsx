@@ -19,12 +19,12 @@ function Home() {
         const response = await fetch("https://dummyjson.com/products");
         const fetchedProducts: FetchProductData = await response.json();
 
-        const uniqueCategories = Array.from(
+        const myProducts = Array.from(
           new Set(fetchedProducts.products.map((products) => products)),
         );
 
-        console.log(uniqueCategories);
-        setProducts(uniqueCategories);
+        console.log(myProducts);
+        setProducts(myProducts);
       } catch (error) {
         console.error("Bro Noma", error);
       }
