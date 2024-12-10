@@ -3,6 +3,11 @@ import { useEffect, useState } from "react";
 interface ProductDataProps {
   id: number;
   title: string;
+  category: string;
+}
+
+interface FetchProductData {
+  products: ProductDataProps[];
 }
 
 function Home() {
@@ -12,8 +17,14 @@ function Home() {
     const fetchProductData = async () => {
       try {
         const response = await fetch("https://dummyjson.com/products");
-        const fetchedProducts = (await response.json()) as ProductDataProps[];
-        setProducts(fetchedProducts);
+        const fetchedProducts: FetchProductData = await response.json();
+
+        const uniqueCategories = Array.from(
+          new Set(fetchedProducts.products.map((products) => products)),
+        );
+
+        console.log(uniqueCategories);
+        setProducts(uniqueCategories);
       } catch (error) {
         console.error("Bro Noma", error);
       }
@@ -21,7 +32,7 @@ function Home() {
     fetchProductData();
   }, []);
 
-  console.log(products);
+  console.log("Hello", products);
 
   return (
     <div className="home">
@@ -30,7 +41,11 @@ function Home() {
         <ul>
           {products.length > 0 ? (
             products.map((product) => (
-              <li key={product.id}> {product.title}</li>
+              <li key={product.id}>
+                {" "}
+                {product.category}
+                {product.title}
+              </li>
             ))
           ) : (
             <p>Loading products...</p>
