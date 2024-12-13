@@ -4,15 +4,17 @@ interface ProductDataProps {
   id: number;
   title: string;
   price: number;
-  image: string;
+  thumbnail: string;
 }
 function ProductCard(prop: ProductDataProps) {
   return (
     <div className="productcard">
       <div className="productcard-container">
-        <img src={prop.image} alt={prop.title} />
-        <h2>{prop.title}</h2>
-        <p>{prop.price}</p>
+        <a href={`/products/${prop.id}`}>
+          <img src={prop.thumbnail} alt={prop.title} />
+          <h2>{prop.title}</h2>
+          <p>{prop.price}</p>
+        </a>
       </div>
     </div>
   );

@@ -5,7 +5,10 @@ import "./App.css";
 import Cart from "./Pages/Cart/Cart";
 import ProductItem from "./Pages/ProductItem/ProductItem";
 
-function App() {
+interface ProductDataProps {
+  id: number;
+}
+function App(prop: ProductDataProps) {
   return (
     <>
       <BrowserRouter>
@@ -14,7 +17,7 @@ function App() {
           <Routes>
             <Route index path="/" element={<Home />} />
             <Route path="/cart" element={<Cart />} />
-            <Route path="/product/id" element={<ProductItem />} />
+            <Route path={`/product/:${prop.id}`} element={<ProductItem />} />
           </Routes>
         </div>
       </BrowserRouter>

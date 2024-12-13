@@ -4,7 +4,7 @@ import ProductCard from "../../Components/ProductCard/ProductCard";
 interface ProductDataProps {
   id: number;
   title: string;
-  image: string;
+  thumbnail: string;
   price: number;
 }
 
@@ -48,7 +48,7 @@ function Home() {
                 id={product.id}
                 title={product.title}
                 price={product.price}
-                image={product.image}
+                thumbnail={product.thumbnail}
               />
             );
           })}
