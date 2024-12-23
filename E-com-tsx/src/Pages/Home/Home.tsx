@@ -20,7 +20,7 @@ function Home() {
       try {
         const response = await fetch("https://dummyjson.com/products");
         const fetchedProducts: FetchProductData = await response.json();
-
+//THIS IS THE LINE YOU ARE LOOKING FOR
         const myProducts = Array.from(
           new Set(fetchedProducts.products.map((products) => products)),
         );
